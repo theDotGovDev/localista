@@ -25,10 +25,20 @@
   before launch" item is obsolete
 
 ## Phase 1 — Harden the baseline
-- First real pipeline run in CI: live-verify every upstream endpoint; fix
+- ✅ First real pipeline run in CI: live-verify every upstream endpoint; fix
   shape drift (see DATA_SOURCES.md checklist); confirm Pages deployment
-- Enable GitHub Pages (Settings → Pages → Source: GitHub Actions) and add
+  (runs #1–#8, PRs #3–#8; site live at the account's Pages domain)
+- ✅ Enable GitHub Pages (Settings → Pages → Source: GitHub Actions) and add
   the optional data secrets
+- ✅ Split CI postures (issue #9): strict merge-blocking `ci.yml`
+  (tests + typecheck + build on PRs) vs. best-effort `deploy.yml` with
+  layered fallbacks (build without typecheck → carry forward last-good
+  site + overlay freshly built content pages → pure carry-forward) — the
+  deployed site never goes down, and help/FAQ/about/blog updates publish
+  even while the app build is broken (they are standalone static entries
+  now, not hash routes in the app bundle). Remaining manual steps: apply
+  `docs/ci/*.yml` to `.github/workflows/`, add `CI / check` to branch
+  protection for main
 - Real PNG icons + richer install experience; Lighthouse PWA pass
 
 ## Phase 1.5 — Salience, drill-down, services (v0.3) ✅ first slice
@@ -38,6 +48,9 @@
 - docs/UX_DESIGN.md: IA principles, salience model, curation policy
 
 ## Phase 2 — Depth
+- ✅ Map of the resolved location (Leaflet + OpenStreetMap tiles, lazy-
+  loaded) with toggleable jurisdiction boundary overlays: TIGERweb for
+  state/county/place/CD/state-legislative, DC GIS for ward/ANC/SMD
 - Metric-driven salience in the pipeline (Wikipedia pageviews + GDELT news
   mentions, both keyless — UX_DESIGN.md §2 v2)
 - Link-check pipeline job for curated data (URL rot fails CI visibly)

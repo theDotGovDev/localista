@@ -1,10 +1,11 @@
+import { pageHref } from '../components/SiteChrome'
 export function HelpPage() {
   return (
     <article className="page">
       <h2>Help guide</h2>
       <p>
         Everything you need to use Localista. For the story behind the app and a
-        step-by-step visual tour, see the <a href="#/blog">introduction</a>.
+        step-by-step visual tour, see the <a href={pageHref('blog/')}>introduction</a>.
       </p>
 
       <h3>Getting started</h3>
@@ -33,6 +34,13 @@ export function HelpPage() {
           <strong>Where you are</strong> — your “civic address”: every jurisdiction
           containing your location, from country down to (in DC) ward, ANC, and
           Single Member District.
+        </li>
+        <li>
+          <strong>Map</strong> — your location on an OpenStreetMap map with your
+          district boundaries outlined (city, congressional district, and — in DC —
+          ward and Single Member District by default). Use the legend checkboxes to
+          show or hide each boundary, including state, county, and state
+          legislative districts.
         </li>
         <li>
           <strong>Your elected representatives</strong> — grouped Federal / State /
@@ -117,7 +125,7 @@ export function HelpPage() {
         sent only to the public geocoding services needed to answer your question
         (U.S. Census Bureau; in DC, the city’s open-data service), then discarded.
         Nothing you look up is recorded by Localista. Full details in{' '}
-        <a href="#/about">About</a> and the <a href="#/faq">FAQ</a>.
+        <a href={pageHref('about/')}>About</a> and the <a href={pageHref('faq/')}>FAQ</a>.
       </p>
     </article>
   )

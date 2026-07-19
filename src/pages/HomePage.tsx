@@ -1,9 +1,11 @@
+import { pageHref } from '../components/SiteChrome'
 import { BillsPanel } from '../components/BillsPanel'
 import { DemographicsPanel } from '../components/DemographicsPanel'
 import { ElectionsPanel } from '../components/ElectionsPanel'
 import { JurisdictionPanel } from '../components/JurisdictionPanel'
 import { KeyOfficialsPanel } from '../components/KeyOfficialsPanel'
 import { LocationBar } from '../components/LocationBar'
+import { MapPanel } from '../components/MapPanel'
 import { RepsPanel } from '../components/RepsPanel'
 import { ServicesPanel } from '../components/ServicesPanel'
 import { useLocalista } from '../hooks/useLocalista'
@@ -33,7 +35,7 @@ export function HomePage() {
             Localista never stores your location — it’s used once, in your browser, to
             look up your districts, then discarded. Start with the button above, type
             an address, or try the demo. New here? Read the{' '}
-            <a href="#/blog">introduction</a> or the <a href="#/help">help guide</a>.
+            <a href={pageHref('blog/')}>introduction</a> or the <a href={pageHref('help/')}>help guide</a>.
           </p>
         )}
         {state.phase === 'locating' && <p className="status">Getting your location…</p>}
@@ -55,6 +57,7 @@ export function HomePage() {
             {/* Order per docs/UX_DESIGN.md §6: orientation → power → tasks
                 → reference → decisions → timing → context. */}
             <JurisdictionPanel geo={state.geo} />
+            <MapPanel geo={state.geo} />
             <KeyOfficialsPanel state={state.reps} geo={state.geo} />
             <ServicesPanel state={state.resources} />
             <RepsPanel state={state.reps} geo={state.geo} />
